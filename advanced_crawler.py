@@ -11,8 +11,8 @@ import logging
 import os
 from collections import deque
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.firefox.service import Service
+from webdriver_manager.firefox import GeckoDriverManager
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 
@@ -34,8 +34,8 @@ adapter = HTTPAdapter(max_retries=retry)
 session.mount('http://', adapter)
 session.mount('https://', adapter)
 
-# Configure Selenium for JavaScript rendering
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+# Configure Selenium for JavaScript rendering with Firefox
+driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()))
 
 # Function to write the results to a file (CSV/JSON)
 def save_to_file(data, file_format='csv', file_name='crawled_data'):
